@@ -6,6 +6,8 @@ import mongoose from 'mongoose';
 import morgan from 'morgan';
 import authRouter from './routes/authRouter.js';
 import userRouter from './routes/userRouter.js';
+import exceriseRouter from './routes/exerciseRouter.js';
+
 const app = express();
 
 app.use(express.json());
@@ -17,6 +19,7 @@ const port = process.env.PORT || 3000;
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/exercise", exceriseRouter);
 
 
 app.use((err, req, res, next) => {
