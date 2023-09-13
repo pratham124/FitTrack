@@ -7,10 +7,14 @@ import morgan from 'morgan';
 import authRouter from './routes/authRouter.js';
 import userRouter from './routes/userRouter.js';
 import exceriseRouter from './routes/exerciseRouter.js';
+import cookieParser from 'cookie-parser';
+import errorHandlerMiddleware from './middleware/errorMiddleware.js';
+import { userAuthentication } from './middleware/authMiddleware.js';
 
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
@@ -18,13 +22,11 @@ if (process.env.NODE_ENV === 'development') {
 const port = process.env.PORT || 3000;
 
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/user", userRouter);
-app.use("/api/v1/exercise", exceriseRouter);
+app.use("/api/v1/user", userAuthentication, userRouter);
+app.use("/api/v1/exercise", userAuthentication, exceriseRouter);
 
 
-app.use((err, req, res, next) => {
-  res.status(500).json({ error: err.message });
-});
+app.use(errorHandlerMiddleware);
 
 app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
 

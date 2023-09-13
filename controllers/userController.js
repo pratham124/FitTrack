@@ -3,7 +3,7 @@ import Exercise from "../models/ExerciseModel.js";
 import StatusCodes from "http-status-codes";
 
 export const getUser = async (req, res) => {
-  const userId = '64fe3bf40e740a1e2d9a288f';
+  const { id: userId } = req.user;
 
   const user = await User.findById(userId);
 
@@ -13,7 +13,7 @@ export const getUser = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-  const userId = '64fe3bf40e740a1e2d9a288f';
+  const { id: userId } = req.user;
 
   await User.findByIdAndUpdate(userId, req.body);
 

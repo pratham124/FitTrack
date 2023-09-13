@@ -1,10 +1,11 @@
+import { BadRequestError } from "../error/customError.js";
 import Exercise from "../models/ExerciseModel.js";
 import StatusCodes from "http-status-codes";
 
 export const getAllExercises = async (req, res) => {
-  const userId = "5f9d4f8b2c3b9a2b1c9b9b9b"
+  const { id } = req.user;
 
-  const exercises = await Exercise.find({ createdBy: userId });
+  const exercises = await Exercise.find({ createdBy: id });
 
   res.status(StatusCodes.OK).json({ exercises });
 };
@@ -20,12 +21,12 @@ export const createExercise = async (req, res) => {
   const { exerciseName, set, reps, weight } = req.body;
   console.log(req.body);
 
-  const userId = "5f9d4f8b2c3b9a2b1c9b9b9b"
+  const { id } = req.user;
 
-  const exerciseExists = await Exercise.findOne({ exerciseName, createdBy: userId });
+  const exerciseExists = await Exercise.findOne({ exerciseName, createdBy: id });
 
   if (exerciseExists) {
-    throw new Error("Exercise already exists");
+    throw new BadRequestError("Exercise already exists");
   }
 
   await Exercise.create({
@@ -42,7 +43,7 @@ export const createExercise = async (req, res) => {
 export const updateExercise = async (req, res) => {
   const { id } = req.params;
 
-  const userId = "5f9d4f8b2c3b9a2b1c9b9b9b"
+  const { id: userId } = req.user;
 
   await Exercise.findOneAndUpdate({ _id: id, createdBy: userId }, req.body);
 

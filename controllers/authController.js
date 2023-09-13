@@ -1,9 +1,12 @@
 import User from "../models/UserModel.js"
 import StatusCodes from "http-status-codes";
+import { UnauthenticatedError } from "../error/customError.js";
+import { comparePassword, createJWT, hashPassword } from "../utils/utils.js";
 
 
 export const register = async (req, res) => {
   const { name, email, password, height, weight } = req.body;
+  const hashedPassword = await hashPassword(password);
 
   const isFirst = await User.countDocuments({}) === 0;
 
@@ -14,7 +17,7 @@ export const register = async (req, res) => {
   const userObj = {
     name,
     email,
-    password,
+    password: hashedPassword,
     height,
     weights: { [date]: weight },
     role
@@ -31,17 +34,27 @@ export const login = async (req, res) => {
 
   const user = await User.findOne({ email });
 
-  const userExists = user && user.password === password;
+  const userExists = user && (comparePassword(password, user.password));
 
   if (!userExists) {
-    throw new Error("Invalid credentials");
+    throw new UnauthenticatedError("Invalid credentials");
   }
 
+  const cookie = createJWT({ id: user._id, role: user.role });
+
+  const oneDay = 24 * 60 * 60 * 1000;
+
+  res.cookie("token", cookie, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    expires: new Date(Date.now() + oneDay),
+  });
   res.status(StatusCodes.OK).json({ msg: 'User logged in' });
 };
 
 
 export const logout = (req, res) => {
+  res.cookie("token", "", { expires: new Date(0) });
   res.status(StatusCodes.OK).json({ msg: 'User logged out' });
 };
 
