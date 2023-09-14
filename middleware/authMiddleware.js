@@ -17,3 +17,10 @@ export const userAuthentication = async (req, res, next) => {
     throw new UnauthenticatedError("Authentication invalid");
   }
 };
+
+export const authorizePermissions = (req, res, next) => {
+  if (req.user.role !== 'admin') {
+    throw new UnauthenticatedError("Authentication invalid");
+  }
+  next();
+};

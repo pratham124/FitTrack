@@ -1,4 +1,3 @@
-import { BadRequestError } from "../error/customError.js";
 import Exercise from "../models/ExerciseModel.js";
 import StatusCodes from "http-status-codes";
 
@@ -19,22 +18,15 @@ export const getExerciseById = async (req, res) => {
 
 export const createExercise = async (req, res) => {
   const { exerciseName, set, reps, weight } = req.body;
-  console.log(req.body);
 
   const { id } = req.user;
-
-  const exerciseExists = await Exercise.findOne({ exerciseName, createdBy: id });
-
-  if (exerciseExists) {
-    throw new BadRequestError("Exercise already exists");
-  }
 
   await Exercise.create({
     exerciseName,
     set,
     reps,
     weight,
-    createdBy: userId,
+    createdBy: id,
   });
 
   res.status(StatusCodes.CREATED).json({ msg: "Exercice created sucessfully" });
