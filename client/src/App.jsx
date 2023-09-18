@@ -3,12 +3,55 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Error from "./pages/Error";
+import Landing from "./pages/Landing";
+import Profile from "./pages/Profile";
+import Admin from "./pages/Admin";
+import WeightTracker from "./pages/WeightTracker";
+import AllExercises from "./pages/AllExercises";
 
 const router = createBrowserRouter([
-  { path: "/", element: <Home /> },
-  { path: "/register", element: <Register /> },
-  { path: "/login", element: <Login /> },
-  { path: "/dashboard", element: <Dashboard /> },
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <Landing />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "dashboard",
+        element: <Dashboard />,
+        children: [
+          {
+            index: true,
+            element: <Profile />,
+          },
+          {
+            path: "admin",
+            elment: <Admin />,
+          },
+          {
+            path: "weight-track",
+            element: <WeightTracker />,
+          },
+          {
+            path: "all-exercises",
+            element: <AllExercises />,
+          },
+        ],
+      },
+    ],
+  },
 ]);
 
 const App = () => {
