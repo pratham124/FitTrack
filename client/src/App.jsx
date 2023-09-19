@@ -9,6 +9,7 @@ import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
 import WeightTracker from "./pages/WeightTracker";
 import AllExercises from "./pages/AllExercises";
+import AddExercise from "./pages/AddExercise";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
           {
             path: "all-exercises",
             element: <AllExercises />,
+          },
+          {
+            path: "add-exercise",
+            element: <AddExercise />,
           },
         ],
       },

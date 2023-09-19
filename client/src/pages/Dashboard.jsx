@@ -8,6 +8,8 @@ import { useState, createContext, useContext } from "react";
 
 const dashboardContext = createContext();
 
+export const useDashboardContext = () => useContext(dashboardContext);
+
 const Dashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const user = "test";
