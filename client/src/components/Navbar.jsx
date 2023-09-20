@@ -3,9 +3,11 @@ import Wrapper from "../assets/wrappers/Navbar";
 import Logo from "../assets/images/logo.svg";
 import { useDashboardContext } from "../pages/Dashboard";
 import { FaAlignLeft } from "react-icons/fa";
+import LogoutContainer from "./LogoutContainer";
 
 const Navbar = () => {
-  const { toggleSidebar } = useDashboardContext();
+  const { toggleSidebar, user } = useDashboardContext();
+  const firstName = user.name.split(" ")[0];
 
   return (
     <Wrapper>
@@ -15,9 +17,11 @@ const Navbar = () => {
         </button>
         <div>
           <img src={Logo} alt="logo" className="logo" />
-          <h4 className="logo-text">dashboard</h4>
+          <h4 className="logo-text">{firstName}</h4>
         </div>
-        <div className="btn-container">toggle/logout</div>
+        <div className="btn-container">
+          <LogoutContainer />
+        </div>
       </div>
     </Wrapper>
   );

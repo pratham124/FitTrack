@@ -12,7 +12,7 @@ export const useDashboardContext = () => useContext(dashboardContext);
 
 const Dashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
-  const user = "test";
+  const user = { name: "John Doe" };
 
   const toggleSidebar = () => {
     setShowSidebar((current) => !current);
