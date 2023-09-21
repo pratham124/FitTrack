@@ -3,7 +3,7 @@ import {
   BadRequestError,
   NotFoundError,
   UnauthorizedError,
-} from '../errors/customErrors.js';
+} from '../error/customError.js';
 import mongoose from 'mongoose';
 import Exercise from '../models/ExerciseModel.js';
 import User from '../models/UserModel.js';

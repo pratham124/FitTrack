@@ -25,6 +25,10 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userAuthentication, userRouter);
 app.use("/api/v1/exercise", userAuthentication, exceriseRouter);
 
+app.use("/api/v1/test", (req, res) => {
+  res.json({ msg: "test" })
+})
+
 
 app.use(errorHandlerMiddleware);
 

@@ -1,5 +1,5 @@
-import { UnauthenticatedError } from "../error/customError";
-import { verifyJWT } from "../utils/utils";
+import { UnauthenticatedError } from "../error/customError.js";
+import { verifyJWT } from "../utils/utils.js";
 
 export const userAuthentication = async (req, res, next) => {
   const { cookie } = req.cookies;
