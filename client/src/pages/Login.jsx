@@ -20,6 +20,7 @@ export const action = async ({ request }) => {
       return err;
     }
     toast.error("Something went wrong. Please try again.");
+    return err;
   }
 };
 

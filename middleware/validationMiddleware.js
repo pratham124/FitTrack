@@ -38,10 +38,22 @@ export const validateCreateExerciseInput = withValidationErrors([
     if (exercise) {
       throw new BadRequestError(' Exercise already exists');
     }
-  }).withMessage(' exercise already exists'),
-  body('set').notEmpty().withMessage('set is required').isInt().withMessage(' Set must be a number'),
-  body('reps').notEmpty().withMessage('reps is required').isInt().withMessage(' Reps must be a number'),
-  body('weight').notEmpty().withMessage('weight is required').isNumeric().withMessage(' Weight must be a number'),
+  }).withMessage(' Exercise already exists'),
+  body('set').notEmpty().withMessage('set is required').isInt().withMessage(' Set must be a number').custom(async (set) => {
+    if (set <= 0) {
+      throw new BadRequestError(' Set must be greater than 0');
+    }
+  }),
+  body('reps').notEmpty().withMessage('reps is required').isInt().withMessage(' Reps must be a number').custom(async (reps) => {
+    if (reps <= 0) {
+      throw new BadRequestError(' Reps must be greater than 0');
+    }
+  }),
+  body('weight').notEmpty().withMessage('weight is required').isNumeric().withMessage(' Weight must be a number').custom(async (weight) => {
+    if (weight <= 0) {
+      throw new BadRequestError(' Weight must be greater than 0');
+    }
+  }),
 ]);
 
 export const validateUpdateExerciseInput = withValidationErrors([

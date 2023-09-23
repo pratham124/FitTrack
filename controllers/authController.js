@@ -34,8 +34,8 @@ export const login = async (req, res) => {
 
   const user = await User.findOne({ email });
 
-  const userExists = user && (comparePassword(password, user.password));
-
+  const userExists = user && (await comparePassword(password, user.password));
+  console.log(userExists);
   if (!userExists) {
     throw new UnauthenticatedError("Invalid credentials");
   }
@@ -49,6 +49,7 @@ export const login = async (req, res) => {
     secure: process.env.NODE_ENV === "production",
     expires: new Date(Date.now() + oneDay),
   });
+  console.log(res)
   res.status(StatusCodes.OK).json({ msg: 'User logged in' });
 };
 

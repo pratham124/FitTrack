@@ -26,7 +26,7 @@ const Wrapper = styled.section`
   .form-btn {
     align-self: end;
     margin-top: 1rem;
-    display: grid;
+    width: 25%;
     place-items: center;
   }
   @media (min-width: 992px) {
@@ -38,7 +38,7 @@ const Wrapper = styled.section`
   }
   @media (min-width: 1120px) {
     .form-center {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
     }
   }
 `;

@@ -2,7 +2,8 @@ import { UnauthenticatedError } from "../error/customError.js";
 import { verifyJWT } from "../utils/utils.js";
 
 export const userAuthentication = async (req, res, next) => {
-  const { cookie } = req.cookies;
+
+  const { token: cookie } = req.cookies;
 
   if (!cookie) {
     throw new UnauthenticatedError("Authentication invalid");
