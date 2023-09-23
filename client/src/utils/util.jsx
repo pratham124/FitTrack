@@ -3,6 +3,7 @@ import { MdAdminPanelSettings } from "react-icons/md";
 import { BsGraphDown } from "react-icons/bs";
 import { GiWeightLiftingUp } from "react-icons/gi";
 import { FaDumbbell } from "react-icons/fa";
+import axios from "axios";
 
 export const links = [
   {
@@ -31,3 +32,7 @@ export const links = [
     icon: <FaDumbbell />,
   },
 ];
+
+export const customFetch = axios.create({
+  baseURL: "/api/v1",
+});

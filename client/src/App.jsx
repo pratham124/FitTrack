@@ -10,6 +10,7 @@ import Admin from "./pages/Admin";
 import WeightTracker from "./pages/WeightTracker";
 import AllExercises from "./pages/AllExercises";
 import AddExercise from "./pages/AddExercise";
+import { action as registerAction } from "./pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+        action: registerAction,
       },
       {
         path: "login",

@@ -1,13 +1,37 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Form, Link, redirect, useNavigation } from "react-router-dom";
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
 import Logo from "../assets/images/logo.svg";
 import FormRow from "../components/FormRow";
+import { customFetch } from "../utils/util";
+import { toast } from "react-toastify";
+
+export const action = async ({ request }) => {
+  const data = Object.fromEntries(await request.formData());
+
+  try {
+    await customFetch.post("/auth/register", data);
+    toast.success("Registration successful. Please login to continue.");
+    return redirect("/login");
+  } catch (err) {
+    const errors = err?.response?.data?.msg;
+    if (errors) {
+      const errorList = errors.split(",");
+      errorList.forEach((error) => toast.error(error));
+      return err;
+    }
+    toast.error("Something went wrong. Please try again.");
+    return err;
+  }
+};
 
 const Register = () => {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+
   return (
     <Wrapper>
-      <form className="form">
+      <Form className="form" method="post">
         <img src={Logo} alt="FitTrack " className="logo" />
         <FormRow type="text" name="name" />
         <FormRow type="email" name="email" />
@@ -15,7 +39,7 @@ const Register = () => {
         <FormRow type="text" name="height" labelText="height (cm)" />
         <FormRow type="text" name="weight" labelText="weight (lbs)" />
         <button type="submit" className="btn btn-block">
-          Register
+          {isSubmitting ? "Registering..." : "Register"}
         </button>
         <p>
           Already have an account?
@@ -23,7 +47,7 @@ const Register = () => {
             Login
           </Link>
         </p>
-      </form>
+      </Form>
     </Wrapper>
   );
 };
