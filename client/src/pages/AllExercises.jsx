@@ -2,20 +2,27 @@ import React from "react";
 import SearchContainer from "../components/SearchContainer";
 import ExercisesContainer from "../components/ExercisesContainer";
 import { customFetch } from "../utils/util";
+import { useLoaderData } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const loader = async () => {
   try {
-    const { data } = customFetch.get("/");
+    const { data } = await customFetch.get("/exercise");
+    return { data };
   } catch (error) {
-    console.log(error);
+    toast.error(error?.response?.data?.msg || "Something went wrong.");
+    return error;
   }
 };
 
 const AllExercises = () => {
+  const { data } = useLoaderData();
+  console.log(data);
+
   return (
     <>
       <SearchContainer />
-      <ExercisesContainer />
+      <ExercisesContainer data={data} />
     </>
   );
 };

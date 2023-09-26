@@ -14,6 +14,7 @@ import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
 import { action as addExerciseAction } from "./pages/AddExercise";
 import { loader as dashboardLoader } from "./pages/Dashboard";
+import { loader as allExercisesLoader } from "./pages/AllExercises";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,7 @@ const router = createBrowserRouter([
           {
             path: "all-exercises",
             element: <AllExercises />,
+            loader: allExercisesLoader,
           },
           {
             path: "add-exercise",

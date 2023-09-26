@@ -4,6 +4,11 @@ const Wrapper = styled.section`
   margin-top: 4rem;
   h2 {
     text-transform: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--grey-200);
+    
   }
   & > h5 {
     font-weight: 700;
