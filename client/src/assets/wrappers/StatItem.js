@@ -15,7 +15,7 @@ const Wrapper = styled.article`
     display: block;
     font-weight: 700;
     font-size: 50px;
-    color: ${(props) => props.color};
+    /* color: ${(props) => props.color}; */
     line-height: 2;
   }
   .title {
