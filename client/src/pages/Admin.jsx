@@ -26,15 +26,11 @@ const Admin = () => {
         count={totalUsers}
         title="Total Users"
         icon={<FaUsers />}
-        color="#fff"
-        bcg="#f44336"
       ></StatItem>
       <StatItem
         count={totalExercises}
         title="Total Exercises"
         icon={<FaCalendarCheck />}
-        color="#fff"
-        bcg="#3f51b5"
       ></StatItem>
     </Wrapper>
   );

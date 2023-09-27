@@ -6,7 +6,7 @@ const Wrapper = styled.aside`
     display: block;
     box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.1);
     .sidebar-container {
-      background: var(--background-secondary-color);
+      background: var(--dark-mode-background-secondary-color);
       min-height: 100vh;
       height: 100%;
       width: 250px;
@@ -24,6 +24,7 @@ const Wrapper = styled.aside`
       height: 6rem;
       display: flex;
       align-items: center;
+      justify-content: center;
       padding-left: 2.5rem;
     }
     .nav-links {
@@ -34,7 +35,7 @@ const Wrapper = styled.aside`
     .nav-link {
       display: flex;
       align-items: center;
-      color: var(--text-secondary-color);
+      color: var(--dark-mode-text-secondary-color);
       padding: 1rem 0;
       padding-left: 2.5rem;
       text-transform: capitalize;
@@ -55,7 +56,7 @@ const Wrapper = styled.aside`
       color: var(--primary-500);
     }
     .pending {
-      background: var(--background-color);
+      background: var(--dark-mode-background-color);
     }
   }
 `;

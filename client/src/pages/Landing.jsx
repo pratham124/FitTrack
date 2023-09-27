@@ -1,6 +1,6 @@
 import React from "react";
 import Wrapper from "../assets/wrappers/LandingPage";
-import logo from "../assets/images/logo.svg";
+import logo from "../../public/favicon.ico";
 import main from "../assets/images/main.svg";
 import { Link } from "react-router-dom";
 

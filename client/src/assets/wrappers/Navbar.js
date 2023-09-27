@@ -6,7 +6,7 @@ const Wrapper = styled.nav`
   align-items: center;
   justify-content: center;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
-  background: var(--background-secondary-color);
+  background: var(--dark-mode-background-secondary-color);
   .nav-center {
     display: flex;
     width: 90vw;
@@ -23,12 +23,7 @@ const Wrapper = styled.nav`
     align-items: center;
   }
   .logo-text {
-    display: none;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    width: 100px;
+    display: block;
   }
   .btn-container {
     display: flex;
@@ -39,12 +34,6 @@ const Wrapper = styled.nav`
     top: 0;
     .nav-center {
       width: 90%;
-    }
-    .logo {
-      display: none;
-    }
-    .logo-text {
-      display: block;
     }
   }
 `;

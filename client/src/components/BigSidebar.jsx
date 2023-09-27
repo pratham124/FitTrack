@@ -3,7 +3,7 @@ import Wrapper from "../assets/wrappers/BigSidebar";
 import { useDashboardContext } from "../pages/Dashboard";
 import { links } from "../utils/util";
 import { NavLink } from "react-router-dom";
-import Logo from "../assets/images/logo.svg";
+import Logo from "../../public/favicon.ico";
 
 const BigSidebar = () => {
   const { showSidebar, user } = useDashboardContext();
@@ -21,6 +21,7 @@ const BigSidebar = () => {
           </header>
           <div className="nav-links">
             {links.map((link) => {
+              if (link.name === "Admin" && user.role !== "admin") return null;
               const { name, path, icon } = link;
 
               return (

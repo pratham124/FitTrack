@@ -9,7 +9,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     svg {
-      color: var(--text-secondary-color);
+      color: var(--dark-mode-text-secondary-color);
     }
   }
   .job-text {

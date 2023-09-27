@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const Wrapper = styled.article`
   padding: 2rem;
-  background: var(--background-secondary-color);
-  border-bottom: 5px solid ${(props) => props.color};
+  background: var(--dark-mode-bg-secondary-color);
+  border-bottom: 5px solid var(--primary-500);
   border-radius: var(--border-radius);
 
   header {
@@ -29,7 +29,7 @@ const Wrapper = styled.article`
   .icon {
     width: 70px;
     height: 60px;
-    background: ${(props) => props.bcg};
+    background: var(--primary-500);
     border-radius: var(--border-radius);
     display: flex;
     align-items: center;

@@ -1,7 +1,13 @@
 import React from "react";
-import { Form, Link, redirect, useNavigation } from "react-router-dom";
+import {
+  Form,
+  Link,
+  redirect,
+  useNavigate,
+  useNavigation,
+} from "react-router-dom";
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
-import Logo from "../assets/images/logo.svg";
+import Logo from "../../public/favicon.ico";
 import FormRow from "../components/FormRow";
 import { customFetch } from "../utils/util";
 import { toast } from "react-toastify";
@@ -27,12 +33,18 @@ export const action = async ({ request }) => {
 
 const Register = () => {
   const navigation = useNavigation();
+  const navigate = useNavigate();
   const isSubmitting = navigation.state === "submitting";
 
   return (
     <Wrapper>
       <Form className="form" method="post">
-        <img src={Logo} alt="FitTrack " className="logo" />
+        <img
+          src={Logo}
+          alt="FitTrack "
+          className="logo"
+          onClick={() => navigate("/")}
+        />
         <FormRow type="text" name="name" />
         <FormRow type="email" name="email" />
         <FormRow type="password" name="password" />

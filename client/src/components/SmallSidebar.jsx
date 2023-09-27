@@ -1,6 +1,6 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
-import Logo from "../assets/images/logo.svg";
+import Logo from "../../public/favicon.ico";
 import { NavLink } from "react-router-dom";
 import { links } from "../utils/util";
 import Wrapper from "../assets/wrappers/SmallSidebar";
@@ -26,6 +26,9 @@ const SmallSidebar = () => {
           <div className="nav-links">
             {links.map((link) => {
               const { name, path, icon } = link;
+              if (user && user.role === "user" && name === "Admin") {
+                return null;
+              }
 
               return (
                 <NavLink

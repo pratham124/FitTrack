@@ -22,7 +22,7 @@ const Wrapper = styled.aside`
     visibility: visible;
   }
   .content {
-    background: var(--background-secondary-color);
+    background: var(--dark-mode-background-secondary-color);
     width: var(--fluid-width);
     height: 95vh;
     border-radius: var(--border-radius);
@@ -39,7 +39,7 @@ const Wrapper = styled.aside`
     background: transparent;
     border-color: transparent;
     font-size: 2rem;
-    color: var(--red-dark);
+    color: var(--primary-300);
     cursor: pointer;
   }
   .nav-links {
@@ -50,7 +50,7 @@ const Wrapper = styled.aside`
   .nav-link {
     display: flex;
     align-items: center;
-    color: var(--text-secondary-color);
+    color: var(--dark-mode-text-secondary-color);
     padding: 1rem 0;
     text-transform: capitalize;
     transition: var(--transition);
