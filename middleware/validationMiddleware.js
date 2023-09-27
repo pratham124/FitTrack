@@ -69,7 +69,7 @@ export const validateIdParam = withValidationErrors([
     const exercise = await Exercise.findById(value);
     if (!exercise) throw new NotFoundError(` No exercise with id ${value}`);
     const isAdmin = req.user.role === 'admin';
-    const isOwner = req.user.userId === exercise.createdBy.toString();
+    const isOwner = req.user.id === exercise.createdBy.toString();
 
     if (!isAdmin && !isOwner)
       throw new UnauthorizedError('not authorized to access this route');

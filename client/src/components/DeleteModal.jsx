@@ -1,9 +1,10 @@
 import React from "react";
+import { Form } from "react-router-dom";
 import styled from "styled-components";
+import { customFetch } from "../utils/util";
+import { toast } from "react-toastify";
 
-const DeleteModal = ({ exerciseId, onClose }) => {
-  console.log(exerciseId);
-
+const DeleteModal = ({ exerciseId, onClose, onDelete }) => {
   return (
     <Wrapper>
       <div className="modal">
@@ -15,10 +16,12 @@ const DeleteModal = ({ exerciseId, onClose }) => {
           action.
         </span>
         <div className="btn-container">
-          <button className="btn cancel-btn" onClick={onClose}>
+          <button type="button" className="btn cancel-btn" onClick={onClose}>
             Cancel
           </button>
-          <button className="btn">Delete</button>
+          <button type="submit" className="btn" onClick={onDelete}>
+            Delete
+          </button>
         </div>
       </div>
     </Wrapper>

@@ -4,20 +4,36 @@ import Exercise from "./Exercise";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import DeleteModal from "./DeleteModal";
+import { toast } from "react-toastify";
+import { customFetch } from "../utils/util";
+import { useNavigate } from "react-router-dom";
 
 const ExercisesContainer = ({ data }) => {
   const { exercises } = data;
-  const [showDeleteModal, setShowDeleteModal] = useState(false); // State to control the modal visibility
-  const [exerciseId, setExerciseId] = useState(""); // State to store the id of the exercise to be deleted
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [exerciseId, setExerciseId] = useState("");
+  const navigate = useNavigate();
 
   const handleDeleteClick = (id) => {
     setExerciseId(id);
     setShowDeleteModal(true);
   };
 
-  const handeModalClose = () => {
+  const handleModalClose = () => {
     setExerciseId("");
     setShowDeleteModal(false);
+  };
+
+  const handleModalDelete = async (id) => {
+    try {
+      await customFetch.delete(`/exercise/${id}`);
+      toast.success("Exercise deleted successfully.");
+    } catch (error) {
+      toast.error("Something went wrong. Please try again.");
+    }
+    setShowDeleteModal(false);
+    setExerciseId("");
+    navigate("/dashboard/all-exercises");
   };
 
   if (exercises.length === 0) {
@@ -41,7 +57,11 @@ const ExercisesContainer = ({ data }) => {
         })}
       </div>
       {showDeleteModal && (
-        <DeleteModal exerciseId={exerciseId} onClose={handeModalClose} />
+        <DeleteModal
+          exerciseId={exerciseId}
+          onClose={handleModalClose}
+          onDelete={() => handleModalDelete(exerciseId)}
+        />
       )}
     </Wrapper>
   );

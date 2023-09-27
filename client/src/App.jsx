@@ -13,8 +13,12 @@ import AddExercise from "./pages/AddExercise";
 import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
 import { action as addExerciseAction } from "./pages/AddExercise";
+import { action as editExerciseAction } from "./pages/EditExercise";
+import { action as deleteExerciseAction } from "./pages/DeleteExercise";
 import { loader as dashboardLoader } from "./pages/Dashboard";
 import { loader as allExercisesLoader } from "./pages/AllExercises";
+import { loader as editExerciseLoader } from "./pages/EditExercise";
+import EditExercise from "./pages/EditExercise";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +66,16 @@ const router = createBrowserRouter([
             path: "add-exercise",
             element: <AddExercise />,
             action: addExerciseAction,
+          },
+          {
+            path: "edit-exercise/:id",
+            element: <EditExercise />,
+            action: editExerciseAction,
+            loader: editExerciseLoader,
+          },
+          {
+            path: "delete-exercise/:id",
+            action: deleteExerciseAction,
           },
         ],
       },

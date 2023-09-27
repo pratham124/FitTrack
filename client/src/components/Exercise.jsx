@@ -19,7 +19,9 @@ const Exercise = ({ _id, exerciseName, set, reps, weight, onDeleteClick }) => {
           <ExerciseInfo icon={<FaDumbbell />} text={set + " sets"} />
         </div>
         <footer className="actions">
-          <Link className="btn edit-btn">Edit</Link>
+          <Link className="btn edit-btn" to={`../edit-exercise/${_id}`}>
+            Edit
+          </Link>
           <button
             className="btn delete-btn"
             type="button"
