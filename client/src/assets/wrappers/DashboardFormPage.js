@@ -7,6 +7,20 @@ const Wrapper = styled.section`
   padding: 3rem 2rem 4rem;
   .form-title {
     margin-bottom: 2rem;
+    font-size: larger;
+  }
+  .info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .quote {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5;
   }
   .form {
     margin: 0;
@@ -28,6 +42,31 @@ const Wrapper = styled.section`
     margin-top: 1rem;
     width: 25%;
     place-items: center;
+  } 
+  .delete-btn {
+  cursor: pointer;
+  color: var(--white);
+  background: var(--red-dark);
+  border: transparent;
+  border-radius: var(--border-radius);
+  letter-spacing: var(--letter-spacing);
+  padding: 0.375rem 0.75rem;
+  box-shadow: var(--shadow-1);
+  transition: var(--transition);
+  text-transform: capitalize;
+  display: inline-block;
+}
+.delete-btn:hover {
+  background: var(--red-light);
+  color: var(--red-dark);
+  box-shadow: var(--shadow-3);
+}
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
   }
   @media (min-width: 992px) {
     .form-center {
@@ -35,6 +74,7 @@ const Wrapper = styled.section`
       align-items: center;
       column-gap: 1rem;
     }
+
   }
   @media (min-width: 1120px) {
     .form-center {

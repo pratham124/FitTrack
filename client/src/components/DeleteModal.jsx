@@ -1,17 +1,12 @@
 import React from "react";
 import Wrapper from "../assets/wrappers/Modal";
 
-const DeleteModal = ({ onClose, onDelete }) => {
+const DeleteModal = ({ onClose, onDelete, title, info }) => {
   return (
     <Wrapper>
       <div className="modal">
-        <span className="main-text">
-          Are you sure you want to delete this exercise?
-        </span>
-        <span className="info-text">
-          This will delete this exercise permanently. You cannot undo this
-          action.
-        </span>
+        <span className="main-text">{title}</span>
+        <span className="info-text">{info}</span>
         <div className="btn-container">
           <button type="button" className="btn cancel-btn" onClick={onClose}>
             Cancel

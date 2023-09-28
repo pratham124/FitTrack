@@ -61,6 +61,9 @@ const ExercisesContainer = ({ data }) => {
           exerciseId={exerciseId}
           onClose={handleModalClose}
           onDelete={() => handleModalDelete(exerciseId)}
+          title="Are you sure you want to delete this exercise?"
+          info="This will delete this exercise permanently. You cannot undo this
+          action."
         />
       )}
     </Wrapper>

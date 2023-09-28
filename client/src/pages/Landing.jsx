@@ -9,6 +9,9 @@ const Landing = () => {
     <Wrapper>
       <nav>
         <img src={logo} alt="FitTrack" className="logo" />
+        <h3>
+          Fit<span>Track</span>
+        </h3>
       </nav>
       <div className="container page">
         <div className="info">

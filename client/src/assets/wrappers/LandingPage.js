@@ -8,6 +8,7 @@ const Wrapper = styled.section`
     height: var(--nav-height);
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
   .page {
     min-height: calc(100vh - var(--nav-height));
@@ -21,6 +22,12 @@ const Wrapper = styled.section`
       color: var(--primary-500);
     }
     margin-bottom: 1.5rem;
+  }
+   h3 {
+    font-weight: 700;
+    span {
+      color: var(--primary-500);
+    }
   }
   p {
     line-height: 2;
