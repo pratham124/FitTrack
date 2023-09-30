@@ -59,4 +59,7 @@ export const logout = (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'User logged out' });
 };
 
+export const forgotPassword = async (req, res) => { };
+
+
 

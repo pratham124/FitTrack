@@ -7,6 +7,7 @@ import {
 import mongoose from 'mongoose';
 import Exercise from '../models/ExerciseModel.js';
 import User from '../models/UserModel.js';
+import { comparePassword } from '../utils/utils.js';
 
 const withValidationErrors = (validateValues) => {
   return [
@@ -108,6 +109,26 @@ export const validateLoginInput = withValidationErrors([
 ]);
 
 export const validateUpdateUserInput = withValidationErrors([
-  body('name').notEmpty().withMessage(' Name is required'),
-  body('height').notEmpty().withMessage(' Location is required'),
+  body('height').notEmpty().withMessage('height is required').isNumeric().withMessage(' Height must be a number').custom(async (height) => {
+    if (height <= 0) {
+      throw new BadRequestError(' Height must be greater than 0');
+    }
+  }),
+]);
+
+export const validateUpdatePasswordInput = withValidationErrors([
+  body('oldPassword').notEmpty().withMessage(' Old password is required').custom(async (oldPassword, { req }) => {
+    const { id: userId } = req.user;
+    const user = await User.findById(userId);
+    const isMatch = await comparePassword(oldPassword, user.password);
+    if (!isMatch) {
+      throw new BadRequestError(' Old password is incorrect');
+    }
+  }),
+  body('newPassword')
+    .notEmpty()
+    .withMessage(' New password is required')
+    .isLength({ min: 8 })
+    .withMessage(' New password must be at least 8 characters long'),
+
 ]);

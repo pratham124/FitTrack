@@ -14,10 +14,12 @@ import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
 import { action as addExerciseAction } from "./pages/AddExercise";
 import { action as editExerciseAction } from "./pages/EditExercise";
+import { action as profileAction } from "./pages/Profile";
 import { loader as dashboardLoader } from "./pages/Dashboard";
 import { loader as allExercisesLoader } from "./pages/AllExercises";
 import { loader as editExerciseLoader } from "./pages/EditExercise";
 import { loader as adminLoader } from "./pages/Admin";
+import { loader as profileLoader } from "./pages/Profile";
 import EditExercise from "./pages/EditExercise";
 
 const router = createBrowserRouter([
@@ -48,6 +50,8 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Profile />,
+            loader: profileLoader,
+            action: profileAction,
           },
           {
             path: "admin",
