@@ -3,6 +3,8 @@ import StatusCodes from "http-status-codes";
 import { UnauthenticatedError } from "../error/customError.js";
 import { comparePassword, createJWT, hashPassword } from "../utils/utils.js";
 import { generate } from "generate-password";
+import nodemailer from "nodemailer";
+import smtpTransport from "nodemailer-smtp-transport";
 
 
 export const register = async (req, res) => {
@@ -69,14 +71,37 @@ export const forgotPassword = async (req, res) => {
     numbers: true,
   });
 
-  console.log(randomPassword);
+  const transporter = nodemailer.createTransport(smtpTransport({
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    auth: {
+      user: process.env.EMAIL_USERNAME,
+      pass: process.env.EMAIL_PASSWORD
+    }
+  }));
+
+
+  const mailOptions = {
+    from: process.env.EMAIL_USERNAME,
+    to: email,
+    subject: 'Reset Password FitTrack',
+    text: `Your new password is ${randomPassword}. Please login and change your password.`,
+  };
 
   const hashedPassword = await hashPassword(randomPassword);
 
   await User.findOneAndUpdate({ email }, { password: hashedPassword });
 
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error(error);
+      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Email sending failed' });
+    } else {
+      console.log('Email sent: ' + info.response);
+      res.status(StatusCodes.OK).json({ msg: 'Password reset email sent successfully' });
+    }
+  });
 
-  res.status(StatusCodes.OK).json({ msg: 'hello' });
 };
 
 
