@@ -1,13 +1,7 @@
 import React from "react";
 import Logo from "../../public/favicon.ico";
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
-import {
-  Form,
-  Link,
-  redirect,
-  useNavigate,
-  useNavigation,
-} from "react-router-dom";
+import { Form, redirect, useNavigate, useNavigation } from "react-router-dom";
 import FormRow from "../components/FormRow";
 import { toast } from "react-toastify";
 import { customFetch } from "../utils/util";
@@ -15,8 +9,11 @@ import { customFetch } from "../utils/util";
 export const action = async ({ request }) => {
   const data = Object.fromEntries(await request.formData());
   try {
-    await customFetch.post("/auth/login", data);
-    return redirect("/dashboard");
+    await customFetch.post("/auth/forgot-password", data);
+    toast.success(
+      "Password Reset. Please check your email for your new password."
+    );
+    return redirect("/login");
   } catch (err) {
     const errors = err?.response?.data?.msg;
     if (errors) {
@@ -44,22 +41,9 @@ const Login = () => {
           onClick={() => navigate("/")}
         />
         <FormRow type="email" name="email" />
-        <FormRow type="password" name="password" />
         <button type="submit" className="btn btn-block" disabled={isSubmitting}>
-          {isSubmitting ? "Logging in..." : "Login"}
+          {isSubmitting ? "Resetting..." : "Reset"}
         </button>
-        <p>
-          Forgot Password?
-          <Link to="/forgot-password" className="member-btn">
-            Click here
-          </Link>
-        </p>
-        <p>
-          Don't have an account?
-          <Link to="/register" className="member-btn">
-            Register
-          </Link>
-        </p>
       </Form>
     </Wrapper>
   );

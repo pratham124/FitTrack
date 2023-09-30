@@ -15,12 +15,14 @@ import { action as loginAction } from "./pages/Login";
 import { action as addExerciseAction } from "./pages/AddExercise";
 import { action as editExerciseAction } from "./pages/EditExercise";
 import { action as profileAction } from "./pages/Profile";
+import { action as forgotPasswordAction } from "./pages/ForgotPassword";
 import { loader as dashboardLoader } from "./pages/Dashboard";
 import { loader as allExercisesLoader } from "./pages/AllExercises";
 import { loader as editExerciseLoader } from "./pages/EditExercise";
 import { loader as adminLoader } from "./pages/Admin";
 import { loader as profileLoader } from "./pages/Profile";
 import EditExercise from "./pages/EditExercise";
+import ForgotPassword from "./pages/ForgotPassword";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +43,11 @@ const router = createBrowserRouter([
         path: "login",
         element: <Login />,
         action: loginAction,
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPassword />,
+        action: forgotPasswordAction,
       },
       {
         path: "dashboard",

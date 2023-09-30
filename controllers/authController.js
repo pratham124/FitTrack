@@ -2,6 +2,7 @@ import User from "../models/UserModel.js"
 import StatusCodes from "http-status-codes";
 import { UnauthenticatedError } from "../error/customError.js";
 import { comparePassword, createJWT, hashPassword } from "../utils/utils.js";
+import { generate } from "generate-password";
 
 
 export const register = async (req, res) => {
@@ -59,7 +60,24 @@ export const logout = (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'User logged out' });
 };
 
-export const forgotPassword = async (req, res) => { };
+export const forgotPassword = async (req, res) => {
+
+  const { email } = req.body;
+
+  const randomPassword = generate({
+    length: 10,
+    numbers: true,
+  });
+
+  console.log(randomPassword);
+
+  const hashedPassword = await hashPassword(randomPassword);
+
+  await User.findOneAndUpdate({ email }, { password: hashedPassword });
+
+
+  res.status(StatusCodes.OK).json({ msg: 'hello' });
+};
 
 
 

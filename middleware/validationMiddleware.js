@@ -132,3 +132,17 @@ export const validateUpdatePasswordInput = withValidationErrors([
     .withMessage(' New password must be at least 8 characters long'),
 
 ]);
+
+export const validateForgotPasswordInput = withValidationErrors([
+  body('email')
+    .notEmpty()
+    .withMessage(' Email is required')
+    .isEmail()
+    .withMessage(' Invalid email format')
+    .custom(async (email) => {
+      const user = await User.findOne({ email });
+      if (!user) {
+        throw new BadRequestError(' Email does not exist');
+      }
+    }),
+]);
