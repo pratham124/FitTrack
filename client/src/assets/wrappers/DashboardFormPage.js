@@ -83,6 +83,24 @@ const Wrapper = styled.section`
     gap: 1.5rem;
     margin-top: 2rem;
   }
+  .grid-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .weight-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 4rem;
+
+  }
+
+  .btn-weight {
+    align-self: end;
+  }
   @media (min-width: 992px) {
     .form-center {
       grid-template-columns: 1fr 1fr;

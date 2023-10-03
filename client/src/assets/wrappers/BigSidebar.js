@@ -51,6 +51,7 @@ const Wrapper = styled.aside`
       margin-right: 1rem;
       display: grid;
       place-items: center;
+      color: var(--primary-500);
     }
     .active {
       color: var(--primary-500);

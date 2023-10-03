@@ -1,7 +1,66 @@
 import React from "react";
+import Wrapper from "../assets/wrappers/DashboardFormPage";
+import { Form, Link, useNavigation, useSubmit } from "react-router-dom";
+import FormRow from "./FormRow";
 
-const SearchContainer = ({ data }) => {
-  return <div>SearchContainer</div>;
+const sorts = {
+  NEWEST: "newest",
+  OLDEST: "oldest",
+  ASCENDING: "a-z",
+  DESCENDING: "z-a",
+};
+
+const SearchContainer = ({ data, params }) => {
+  const { search, sort } = params;
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+  const submit = useSubmit();
+  return (
+    <Wrapper>
+      <Form className="form">
+        <h5 className="form-title">Search</h5>
+        <div className="form-center">
+          <FormRow
+            type="search"
+            name="search"
+            required={false}
+            defaultValue={search}
+            onChange={(e) => {
+              submit(e.currentTarget.form);
+            }}
+          />
+          <div className="form-row">
+            <label htmlFor="sort" className="form-label">
+              Sort
+            </label>
+            <select
+              name="sort"
+              id="sort"
+              className="form-select"
+              defaultValue={sort}
+              onChange={(e) => {
+                submit(e.currentTarget.form);
+              }}
+            >
+              {Object.values(sorts).map((s) => {
+                return (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                );
+              })}
+            </select>
+            <Link
+              to="/dashboard/all-exercises"
+              className="btn form-btn delete-btn"
+            >
+              Reset Filters
+            </Link>
+          </div>
+        </div>
+      </Form>
+    </Wrapper>
+  );
 };
 
 export default SearchContainer;

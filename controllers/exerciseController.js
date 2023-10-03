@@ -3,10 +3,34 @@ import StatusCodes from "http-status-codes";
 
 export const getAllExercises = async (req, res) => {
   const { id } = req.user;
+  const { search, sort, page, limit } = req.query;
 
-  const exercises = await Exercise.find({ createdBy: id });
+  const query = { createdBy: id };
 
-  res.status(StatusCodes.OK).json({ exercises });
+  if (search) {
+    query.exerciseName = { $regex: search, $options: "i" };
+  }
+
+  const sortOptions = {
+    newest: "-createdAt",
+    oldest: "createdAt",
+    'a-z': "exerciseName",
+    'z-a': "-exerciseName",
+  };
+
+  const sortType = sortOptions[sort] || sortOptions.newest;
+
+  const pageNo = Number(page) || 1;
+  const limitNo = Number(limit) || 10;
+  const skip = (pageNo - 1) * limitNo;
+
+  const exercises = await Exercise.find(query).sort(sortType).skip(skip).limit(limitNo);
+
+  const total = await Exercise.countDocuments(query);
+  const numOfPages = Math.ceil(total / limitNo);
+
+
+  res.status(StatusCodes.OK).json({ total, numOfPages, currentPage: pageNo, exercises });
 };
 
 export const getExerciseById = async (req, res) => {
@@ -50,6 +74,3 @@ export const deleteExercise = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Exercise deleted sucessfully" });
 };
 
-export const showStats = async (req, res) => {
-  console.log("showStats");
-};

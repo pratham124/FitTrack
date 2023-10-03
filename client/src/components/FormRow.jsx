@@ -11,6 +11,7 @@ const FormRow = forwardRef(
       defaultValue = "",
       readOnly = false,
       required = true,
+      onChange = () => {},
     },
     ref
   ) => {
@@ -28,6 +29,7 @@ const FormRow = forwardRef(
           required={required}
           readOnly={readOnly}
           ref={ref}
+          onChange={onChange}
         />
       </div>
     );

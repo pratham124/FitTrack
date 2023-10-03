@@ -5,10 +5,14 @@ import { customFetch } from "../utils/util";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export const loader = async () => {
+export const loader = async ({ request }) => {
   try {
-    const { data } = await customFetch.get("/exercise");
-    return { data };
+    const params = Object.fromEntries([
+      ...new URL(request.url).searchParams.entries(),
+    ]);
+    console.log(params);
+    const { data } = await customFetch.get("/exercise", { params });
+    return { data, params };
   } catch (error) {
     toast.error(error?.response?.data?.msg || "Something went wrong.");
     return error;
@@ -16,12 +20,12 @@ export const loader = async () => {
 };
 
 const AllExercises = () => {
-  const { data } = useLoaderData();
+  const { data, params } = useLoaderData();
   console.log(data);
 
   return (
     <>
-      <SearchContainer />
+      <SearchContainer data={data} params={params} />
       <ExercisesContainer data={data} />
     </>
   );
