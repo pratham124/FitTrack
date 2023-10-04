@@ -15,6 +15,17 @@ const SearchContainer = ({ data, params }) => {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   const submit = useSubmit();
+
+  const debounce = (onChange) => {
+    let timer;
+    return (e) => {
+      const form = e.currentTarget.form;
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        onChange(form);
+      }, 1000);
+    };
+  };
   return (
     <Wrapper>
       <Form className="form">
@@ -25,9 +36,9 @@ const SearchContainer = ({ data, params }) => {
             name="search"
             required={false}
             defaultValue={search}
-            onChange={(e) => {
-              submit(e.currentTarget.form);
-            }}
+            onChange={debounce((form) => {
+              submit(form);
+            })}
           />
           <div className="form-row">
             <label htmlFor="sort" className="form-label">
@@ -50,13 +61,13 @@ const SearchContainer = ({ data, params }) => {
                 );
               })}
             </select>
-            <Link
-              to="/dashboard/all-exercises"
-              className="btn form-btn delete-btn"
-            >
-              Reset Filters
-            </Link>
           </div>
+          <Link
+            to="/dashboard/all-exercises"
+            className="btn form-btn delete-btn"
+          >
+            Reset Filters
+          </Link>
         </div>
       </Form>
     </Wrapper>

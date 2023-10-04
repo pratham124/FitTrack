@@ -9,7 +9,7 @@ import { customFetch } from "../utils/util";
 import { useNavigate } from "react-router-dom";
 
 const ExercisesContainer = ({ data }) => {
-  const { exercises } = data;
+  const { exercises, currentPage, total, numOfPages } = data;
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [exerciseId, setExerciseId] = useState("");
   const navigate = useNavigate();
@@ -45,6 +45,9 @@ const ExercisesContainer = ({ data }) => {
   }
   return (
     <Wrapper>
+      <h5>
+        {total} exercise{exercises.length > 1 && "s"} found
+      </h5>
       <div className="jobs">
         {exercises.map((exercise) => {
           return (
