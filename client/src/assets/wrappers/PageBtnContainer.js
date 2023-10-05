@@ -9,7 +9,7 @@ const Wrapper = styled.section`
   flex-wrap: wrap;
   gap: 1rem;
   .btn-container {
-    background: var(--background-secondary-color);
+    background: var(--dark-mode-bg-secondary-color);
     border-radius: var(--border-radius);
     display: flex;
   }
@@ -30,7 +30,7 @@ const Wrapper = styled.section`
 
   }
   .prev-btn,.next-btn{
-    background: var(--background-secondary-color);
+    background: var(--dark-mode-bg-secondary-color);
     border-color: transparent;
         border-radius: var(--border-radius);
 

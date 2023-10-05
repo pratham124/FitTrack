@@ -7,9 +7,10 @@ import DeleteModal from "./DeleteModal";
 import { toast } from "react-toastify";
 import { customFetch } from "../utils/util";
 import { useNavigate } from "react-router-dom";
+import Pagination from "./Pagination";
 
 const ExercisesContainer = ({ data }) => {
-  const { exercises, currentPage, total, numOfPages } = data;
+  const { exercises, total, numOfPages } = data;
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [exerciseId, setExerciseId] = useState("");
   const navigate = useNavigate();
@@ -59,6 +60,7 @@ const ExercisesContainer = ({ data }) => {
           );
         })}
       </div>
+      {numOfPages > 1 && <Pagination data={data} />}
       {showDeleteModal && (
         <DeleteModal
           exerciseId={exerciseId}

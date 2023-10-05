@@ -12,8 +12,6 @@ const sorts = {
 
 const SearchContainer = ({ data, params }) => {
   const { search, sort } = params;
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === "submitting";
   const submit = useSubmit();
 
   const debounce = (onChange) => {
@@ -66,7 +64,7 @@ const SearchContainer = ({ data, params }) => {
             to="/dashboard/all-exercises"
             className="btn form-btn delete-btn"
           >
-            Reset Filters
+            Reset
           </Link>
         </div>
       </Form>

@@ -70,6 +70,7 @@ const Wrapper = styled.section`
   transition: var(--transition);
   text-transform: capitalize;
   display: inline-block;
+  width: fit-content;
 }
 .delete-btn:hover {
   background: var(--red-light);
@@ -109,6 +110,9 @@ const Wrapper = styled.section`
     }
     .form-btn {
       width: 25%;
+    }
+    .delete-btn {
+      width: fit-content;
     }
     .profile-form-center {
       grid-template-columns: 4fr 6fr;
