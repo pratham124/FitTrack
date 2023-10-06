@@ -21,6 +21,7 @@ import { loader as allExercisesLoader } from "./pages/AllExercises";
 import { loader as editExerciseLoader } from "./pages/EditExercise";
 import { loader as adminLoader } from "./pages/Admin";
 import { loader as profileLoader } from "./pages/Profile";
+import { loader as weightLoader } from "./pages/WeightTracker";
 import EditExercise from "./pages/EditExercise";
 import ForgotPassword from "./pages/ForgotPassword";
 
@@ -68,6 +69,7 @@ const router = createBrowserRouter([
           {
             path: "weight-track",
             element: <WeightTracker />,
+            loader: weightLoader,
           },
           {
             path: "all-exercises",

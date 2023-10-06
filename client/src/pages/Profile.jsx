@@ -18,6 +18,7 @@ export const loader = async () => {
     const {
       data: { user, quote, author },
     } = await customFetch.get("/user");
+    console.log(user);
     return { user, quote, author };
   } catch (error) {
     toast.error("Something went wrong. Please try again.");

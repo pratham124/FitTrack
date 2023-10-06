@@ -12,7 +12,7 @@ const DeleteModal = ({ onClose, onDelete, title, info }) => {
             Cancel
           </button>
           <button type="submit" className="btn" onClick={onDelete}>
-            Delete
+            Confirm
           </button>
         </div>
       </div>

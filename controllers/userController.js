@@ -54,3 +54,18 @@ export const resetPassword = async (req, res) => {
 
   res.status(StatusCodes.OK).json({ msg: 'Password updated successfully' });
 };
+
+export const updateWeights = async (req, res) => {
+  const { id } = req.user;
+  const { date, weight } = req.body;
+
+  const user = await User.findById(id);
+
+  const weights = user.weights;
+
+  weights.set(date, weight);
+
+  await User.findByIdAndUpdate(id, { weights });
+
+  res.status(StatusCodes.OK).json({ msg: 'Weight updated successfully' });
+}

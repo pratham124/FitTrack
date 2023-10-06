@@ -95,12 +95,21 @@ const Wrapper = styled.section`
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    margin-top: 4rem;
+    margin-top: 2rem;
+
+  }
+   .range-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
 
   }
 
   .btn-weight {
     align-self: end;
+    height: 35px;
   }
   @media (min-width: 992px) {
     .form-center {
