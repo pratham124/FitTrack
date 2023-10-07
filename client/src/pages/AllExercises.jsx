@@ -2,8 +2,9 @@ import React from "react";
 import SearchContainer from "../components/SearchContainer";
 import ExercisesContainer from "../components/ExercisesContainer";
 import { customFetch } from "../utils/util";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import { toast } from "react-toastify";
+import Loader from "../components/Loader";
 
 export const loader = async ({ request }) => {
   try {
@@ -21,7 +22,10 @@ export const loader = async ({ request }) => {
 
 const AllExercises = () => {
   const { data, params } = useLoaderData();
-  console.log(data);
+  const navigation = useNavigation();
+  const isLoading = navigation.state === "loading";
+
+  if (isLoading) return <Loader />;
 
   return (
     <>

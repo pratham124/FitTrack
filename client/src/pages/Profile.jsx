@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { customFetch } from "../utils/util";
 import { useState } from "react";
 import DeleteModal from "../components/DeleteModal";
+import Loader from "../components/Loader";
 
 export const loader = async () => {
   try {
@@ -53,6 +54,7 @@ const Profile = () => {
   const oldPassRef = useRef(null);
   const newPassRef = useRef(null);
   const isSubmitting = navigation.state === "submitting";
+  const isLoading = navigation.state === "loading";
   const [showModal, setShowModal] = useState(false);
 
   const handleDelete = async () => {
@@ -85,6 +87,8 @@ const Profile = () => {
       return err;
     }
   };
+
+  if (isLoading) return <Loader />;
 
   return (
     <Wrapper>

@@ -1,11 +1,18 @@
 import React from "react";
-import { Outlet, redirect, useLoaderData, useNavigate } from "react-router-dom";
+import {
+  Outlet,
+  redirect,
+  useLoaderData,
+  useNavigate,
+  useNavigation,
+} from "react-router-dom";
 import Wrapper from "../assets/wrappers/Dashboard";
 import SmallSidebar from "../components/SmallSidebar";
 import BigSidebar from "../components/BigSidebar";
 import Navbar from "../components/Navbar";
 import { useState, createContext, useContext } from "react";
 import { customFetch } from "../utils/util";
+import Loader from "../components/Loader";
 
 const dashboardContext = createContext();
 
@@ -22,6 +29,8 @@ export const useDashboardContext = () => useContext(dashboardContext);
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const navigation = useNavigation();
+  const isLoading = navigation.state === "loading";
   const [showSidebar, setShowSidebar] = useState(false);
   const { user } = useLoaderData();
 
@@ -54,7 +63,7 @@ const Dashboard = () => {
           <div>
             <Navbar />
             <div className="dashboard-page">
-              <Outlet context={{ user }} />
+              {isLoading ? <Loader /> : <Outlet />}
             </div>
           </div>
         </main>

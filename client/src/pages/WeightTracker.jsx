@@ -11,8 +11,9 @@ import FormRow from "../components/FormRow";
 import Wrapper from "../assets/wrappers/DashboardFormPage";
 import { toast } from "react-toastify";
 import { customFetch } from "../utils/util";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate, useNavigation } from "react-router-dom";
 import DeleteModal from "../components/DeleteModal";
+import Loader from "../components/Loader";
 
 export const loader = async () => {
   try {
@@ -40,6 +41,8 @@ export const loader = async () => {
 
 const WeightTracker = () => {
   const currentDate = new Date();
+  const navigation = useNavigation();
+  const isLoading = navigation.state === "loading";
   const { data: loaderData, dates } = useLoaderData();
   const dateRef = useRef();
   const weightRef = useRef();
@@ -103,6 +106,8 @@ const WeightTracker = () => {
     });
     setData(filteredData);
   };
+
+  if (isLoading) return <Loader />;
 
   return (
     <Wrapper>

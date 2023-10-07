@@ -4,6 +4,7 @@ import { customFetch } from "../utils/util";
 import { toast } from "react-toastify";
 import { Form, redirect, useLoaderData, useNavigation } from "react-router-dom";
 import FormRow from "../components/FormRow";
+import Loader from "../components/Loader";
 
 export const loader = async ({ params }) => {
   try {
@@ -37,6 +38,9 @@ const EditExercise = () => {
   const navigation = useNavigation();
 
   const isSubmitting = navigation.state === "submitting";
+  const isLoading = navigation.state === "loading";
+
+  if (isLoading) return <Loader />;
 
   return (
     <Wrapper>
