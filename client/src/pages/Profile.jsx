@@ -11,7 +11,7 @@ import FormRow from "../components/FormRow";
 import { toast } from "react-toastify";
 import { customFetch } from "../utils/util";
 import { useState } from "react";
-import DeleteModal from "../components/DeleteModal";
+import Modal from "../components/Modal";
 import Loader from "../components/Loader";
 
 export const loader = async () => {
@@ -167,14 +167,14 @@ const Profile = () => {
         </div>
       </Form>
       {showModal && (
-        <DeleteModal
+        <Modal
           onClose={() => setShowModal(false)}
           onDelete={handleDelete}
           title={"Are you sure you want to delete your account?"}
           info={
             "This will delete your account permanently. You cannot undo this action."
           }
-        ></DeleteModal>
+        ></Modal>
       )}
     </Wrapper>
   );

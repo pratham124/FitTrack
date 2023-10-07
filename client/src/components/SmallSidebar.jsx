@@ -1,6 +1,6 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
-import Logo from "../../public/favicon.ico";
+import Logo from "../assets/images/favicon.ico";
 import { NavLink } from "react-router-dom";
 import { links } from "../utils/util";
 import Wrapper from "../assets/wrappers/SmallSidebar";

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import Wrapper from "../assets/wrappers/JobsContainer";
+import Wrapper from "../assets/wrappers/ExerciseContainer";
 import Exercise from "./Exercise";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import DeleteModal from "./DeleteModal";
+import Modal from "./Modal";
 import { toast } from "react-toastify";
 import { customFetch } from "../utils/util";
 import { useNavigate } from "react-router-dom";
@@ -62,7 +62,7 @@ const ExercisesContainer = ({ data }) => {
       </div>
       {numOfPages > 1 && <Pagination data={data} />}
       {showDeleteModal && (
-        <DeleteModal
+        <Modal
           exerciseId={exerciseId}
           onClose={handleModalClose}
           onDelete={() => handleModalDelete(exerciseId)}

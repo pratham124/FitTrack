@@ -1,7 +1,7 @@
 import React from "react";
 import Wrapper from "../assets/wrappers/Modal";
 
-const DeleteModal = ({ onClose, onDelete, title, info }) => {
+const Modal = ({ onClose, onDelete, title, info }) => {
   return (
     <Wrapper>
       <div className="modal">
@@ -20,4 +20,4 @@ const DeleteModal = ({ onClose, onDelete, title, info }) => {
   );
 };
 
-export default DeleteModal;
+export default Modal;

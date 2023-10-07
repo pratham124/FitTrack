@@ -1,5 +1,5 @@
 import React from "react";
-import Wrapper from "../assets/wrappers/JobInfo";
+import Wrapper from "../assets/wrappers/ExerciseInfo";
 
 const ExerciseInfo = ({ icon, text }) => {
   return (

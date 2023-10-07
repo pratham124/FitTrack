@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../public/favicon.ico";
+import Logo from "../assets/images/favicon.ico";
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
 import {
   Form,

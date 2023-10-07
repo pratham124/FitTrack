@@ -3,7 +3,7 @@ import Wrapper from "../assets/wrappers/BigSidebar";
 import { useDashboardContext } from "../pages/Dashboard";
 import { links } from "../utils/util";
 import { NavLink } from "react-router-dom";
-import Logo from "../../public/favicon.ico";
+import Logo from "../assets/images/favicon.ico";
 
 const BigSidebar = () => {
   const { showSidebar, user } = useDashboardContext();

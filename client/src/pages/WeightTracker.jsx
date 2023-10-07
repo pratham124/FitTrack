@@ -12,7 +12,7 @@ import Wrapper from "../assets/wrappers/DashboardFormPage";
 import { toast } from "react-toastify";
 import { customFetch } from "../utils/util";
 import { useLoaderData, useNavigate, useNavigation } from "react-router-dom";
-import DeleteModal from "../components/DeleteModal";
+import Modal from "../components/Modal";
 import Loader from "../components/Loader";
 
 export const loader = async () => {
@@ -184,7 +184,7 @@ const WeightTracker = () => {
         </div>
       </div>
       {showModal && (
-        <DeleteModal
+        <Modal
           onClose={() => setShowModal(false)}
           onDelete={() => {
             setShowModal(false);

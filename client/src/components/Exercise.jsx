@@ -1,5 +1,5 @@
 import React from "react";
-import Wrapper from "../assets/wrappers/Job";
+import Wrapper from "../assets/wrappers/Exercise";
 import { FaWeightHanging, FaDumbbell } from "react-icons/fa";
 import { IoMdRepeat } from "react-icons/io";
 import ExerciseInfo from "./ExerciseInfo";
