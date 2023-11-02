@@ -31,7 +31,7 @@ app.use("/api/v1/user", userAuthentication, userRouter);
 app.use("/api/v1/exercise", userAuthentication, exceriseRouter);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './public', 'index.html'));
+  res.sendFile(path.resolve(__dirname, './client/dist', 'index.html'));
 })
 
 app.use(errorHandlerMiddleware);
