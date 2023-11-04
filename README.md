@@ -1,6 +1,6 @@
 # FitTrack
 
-Welcome to the FitTrack, a user-friendly application designed to help you achieve your fitness goals by allowing you to create exercises, track your weight, and visualize your progress with interactive graphs. Whether you're a seasoned athlete or just starting your fitness journey, this app will help you stay on track and motivated.
+Welcome to the FitTrack, a user-friendly application designed to help you achieve your fitness goals by allowing you to create exercises, track your weight, and visualize your progress with interactive graphs. Whether you're a seasoned athlete or just starting your fitness journey, this app will help you stay on track and motivated. You can use it at https://fit-track-lzbk.onrender.com/
 
 ## Table of Contents
 
@@ -36,8 +36,6 @@ To get started with the Fitness Tracker App, follow these steps:
 2. **Install Dependencies:** Run the command `npm run setup-production-app` from the root directory. Then, go to client directory and copy the contents inside the dists folder into the public folder from the root directory.
 3. **Configuration:** Set up the app's configuration, such as database connections and user authentication, in a .env file. The format of the .env are outlined in the env.txt file
 4. **Run the App:** Start the app by running `node server` from the root directory. The app will be accessible at `http://localhost:5000` by default.
-
-P.S. The application will eventually be deployed on the web.
 
 ## 4. How to Use
 
